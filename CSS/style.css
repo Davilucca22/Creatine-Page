@@ -1,192 +1,525 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-html{   
-    font-family: 'Outfit',sans-serif;
+html {
+    font-family: 'Outfit', sans-serif;
     scroll-behavior: smooth;
-    background-color: rgba(65, 43, 92, 1);
+    background-color: #1a0f2e;
 }
 
-header{
+/* Animações globais */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(105, 77, 140, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(105, 77, 140, 0.8);
+    }
+}
+
+body {
+    overflow-x: hidden;
+}
+
+header {
     position: sticky;
     top: 0;
     width: 100%;
-    background-color: rgb(0, 73, 103);
+    background: linear-gradient(135deg, #412b5c 0%, #5a3a7a 50%, #412b5c 100%);
     z-index: 10;
-    box-shadow: 10px 0px 10px black;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    animation: slideInDown 0.5s ease-out;
 }
 
-#menu ul{
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    display: none;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #e0d5f5;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    gap: 6px;
+    z-index: 20;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #e0d5f5;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+#menu {
+    transition: all 0.3s ease;
+}
+
+#menu ul {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    justify-content: center;
+    gap: 10px;
 }
 
-#menu ul li{
-    margin: 0 auto;
-    padding: 20px;
-    font-weight:bold;
-    font-size: 20px;
+#menu ul li {
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 16px;
+    list-style: none;
+    position: relative;
 }
 
-#menu li::marker{
-    color: transparent;
-}
-
-#menu li a{
+#menu li a {
     text-decoration: none;
+    color: #e0d5f5;
+    transition: all 0.3s ease;
+    position: relative;
+    font-weight: 600;
+}
+
+#menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #694d8c, #b591d0);
+    transition: width 0.3s ease;
+}
+
+#menu li a:hover {
+    color: #b591d0;
+    transform: translateY(-2px);
+}
+
+#menu li a:hover::after {
     width: 100%;
-    height: 100%;
-    padding: 20px;
-    color: whitesmoke;
 }
 
-a:hover{
-    color: #1492c4;
-}
-
-section{
+section {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    padding-top: 70px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInUp 0.8s ease-out;
 }
 
-#page1 div p:hover,h1:hover,h2:hover{
-    cursor: default;
+/* Seção 1 - O que é Creatina */
+#page1 {
+    background: linear-gradient(135deg, #2b1a47 0%, #412b5c 50%, #3a2555 100%);
+    position: relative;
+    overflow: hidden;
 }
 
-#page1{
-    background: radial-gradient(circle, rgba(105, 77, 140, 1) 0%, rgba(65, 43, 92, 1) 50%, rgba(65, 43, 92, 1) 100%);
-}
-
-#page1 img{
-    margin-top: 100px;
+#page1::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
     width: 500px;
     height: 500px;
+    background: radial-gradient(circle, rgba(105, 77, 140, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+#page1 img {
+    width: 450px;
+    height: 450px;
+    animation: slideInLeft 0.8s ease-out;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 10px 40px rgba(105, 77, 140, 0.6));
+}
+
+#page1 img:hover {
+    transform: translateY(-10px);
 }
 
 #page1 div {
-    width: 60%;
-    font-size: 20px;
-    font-weight: 500;
+    width: 50%;
+    font-size: 18px;
+    font-weight: 400;
+    animation: slideInRight 0.8s ease-out;
+    z-index: 1;
 }
 
-#page1 h1,h2{
-    margin: 20px 0;
-    font-size: 40px;
-    color: whitesmoke;
+#page1 h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #e0d5f5;
+    font-weight: 700;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+#page1 h2 {
+    font-size: 28px;
+    color: #b591d0;
+    margin: 30px 0 20px 0;
+    text-align: left;
+    width: auto;
 }
 
 #page1 p {
-    padding: 40px ;
-    width: 80%;
-    background-color: #2b0742;
-    border-radius: 20px;
-    margin-bottom: 50px;
-    color: aliceblue;
-}
-
-hr{
-    width: 90%;
-    margin: 0 auto;
-}
-
-h2{
+    padding: 25px 30px;
     width: 100%;
-    text-align: center;
-    font-size: 40px;
-    height: auto;
-    margin-bottom: 50px;
-    color: whitesmoke;
+    background: linear-gradient(135deg, rgba(105, 77, 140, 0.3) 0%, rgba(181, 145, 208, 0.1) 100%);
+    border-radius: 15px;
+    margin-bottom: 25px;
+    color: #e0d5f5;
+    border-left: 4px solid #694d8c;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
-#page2 img{
-    border-radius: 10px;
-    width: 50%;    
-    margin-left: 80px;
-    margin-bottom: 20vh;
+#page1 p:hover {
+    transform: translateX(10px);
+    border-left: 4px solid #b591d0;
+    background: linear-gradient(135deg, rgba(105, 77, 140, 0.5) 0%, rgba(181, 145, 208, 0.2) 100%);
+}
+
+/* Seção 2 - Benefícios */
+#page2 {
+    background: linear-gradient(135deg, #412b5c 0%, #5a3a7a 50%, #412b5c 100%);
+}
+
+#page2 h2 {
+    font-size: 44px;
+    color: #e0d5f5;
+    margin-bottom: 60px;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+#page2 img {
+    border-radius: 20px;
+    width: 45%;
+    filter: drop-shadow(0 15px 50px rgba(105, 77, 140, 0.8));
+    animation: slideInLeft 0.8s ease-out 0.2s both;
+    transition: transform 0.3s ease;
+}
+
+#page2 img:hover {
+    transform: scale(1.05) translateY(-10px);
 }
 
 #page2 div {
-    display: block;
-    width: 40%;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    font-size: 18px;
+    color: #e0d5f5;
+    animation: slideInRight 0.8s ease-out 0.2s both;
+    padding: 0 40px;
+}
+
+#page2 div p {
+    margin: 20px 0;
+    background: linear-gradient(135deg, rgba(105, 77, 140, 0.3) 0%, rgba(181, 145, 208, 0.1) 100%);
+    padding: 20px 25px;
+    border-radius: 15px;
+    border-left: 4px solid #694d8c;
+    transition: all 0.3s ease;
+}
+
+#page2 div p:hover {
+    transform: translateX(10px);
+    border-left: 4px solid #b591d0;
+    background: linear-gradient(135deg, rgba(105, 77, 140, 0.5) 0%, rgba(181, 145, 208, 0.2) 100%);
+}
+
+#page2 div ul {
+    margin: 30px 0;
+    line-height: 40px;
+    background: linear-gradient(135deg, rgba(105, 77, 140, 0.3) 0%, rgba(181, 145, 208, 0.1) 100%);
+    padding: 30px 40px;
+    border-radius: 15px;
+    border-left: 4px solid #694d8c;
+    list-style: none;
+}
+
+#page2 div ul li {
+    position: relative;
+    padding-left: 30px;
+    transition: transform 0.3s ease;
+}
+
+#page2 div ul li:hover {
+    transform: translateX(10px);
+}
+
+#page2 div ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #b591d0;
+    font-weight: 700;
     font-size: 20px;
-    color: whitesmoke;
 }
 
-#page2 div p{
-    margin: 30px 20px; 
-    background-color: #2b0742;
-    padding: 20px;
-    border-radius: 20px;
+/* Seção 3 - Como Tomar */
+#page3 {
+    background: linear-gradient(135deg, #2b1a47 0%, #412b5c 50%, #3a2555 100%);
 }
 
-#page2 div ul{
-    margin: 30px 40px;    
-    line-height: 35px;
-    background-color: #2b0742;
-    padding: 20px 40px;
-    border-radius: 20px;
+#page3 h2 {
+    font-size: 44px;
+    color: #e0d5f5;
+    margin-bottom: 60px;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-#page3 div{
-    padding: 20px 40px;
+#page3 div {
+    padding: 40px;
+    width: 90%;
+    animation: fadeInUp 0.8s ease-out;
 }
 
 #page3 p {
-    margin: 10px 0;
-    font-size: 20px;
-    color: whitesmoke;
+    margin: 20px 0;
+    font-size: 18px;
+    color: #e0d5f5;
+    background: linear-gradient(135deg, rgba(105, 77, 140, 0.3) 0%, rgba(181, 145, 208, 0.1) 100%);
+    padding: 20px 25px;
+    border-radius: 15px;
+    border-left: 4px solid #694d8c;
+    transition: all 0.3s ease;
+}
+
+#page3 p:hover {
+    transform: translateX(10px);
+    border-left: 4px solid #b591d0;
 }
 
 #page3 ul {
-    margin-left: 40px;
-    color: whitesmoke;
-    font-weight: 600;
-    line-height: 30px;
-}
-
-#page3 h3,ol{
-    margin: 20px 0;
-    color: whitesmoke;
-}
-
-#page3 ol{
-    padding-left: 40px;
-}
-
-#page3 ol li{
-    margin: 10px;
-}
-
-#page3 a{
-    color: #1492c4;
-}
-
-#page4 table{
-    color: whitesmoke;
-    width: 50%;
-    padding: 20px;
-    margin: 0 auto;
-    border: 1px solid whitesmoke;
-    border-collapse: collapse;
+    margin: 30px 0 30px 40px;
+    color: #e0d5f5;
     font-weight: 500;
+    line-height: 35px;
+    background: linear-gradient(135deg, rgba(105, 77, 140, 0.3) 0%, rgba(181, 145, 208, 0.1) 100%);
+    padding: 30px 40px;
+    border-radius: 15px;
+    border-left: 4px solid #694d8c;
 }
 
-#page4 td{
-    border: 1px solid whitesmoke;
-    padding: 10px;
+#page3 ul li {
+    list-style: none;
+    position: relative;
+    padding-left: 25px;
+    transition: transform 0.3s ease;
 }
 
-#page4 td pre{
-    font-size: 20px;
-    padding-bottom: 0;
-    font-family: 'Outfit',sans-serif;
+#page3 ul li:hover {
+    transform: translateX(10px);
+}
+
+#page3 ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #b591d0;
+    font-weight: 700;
+}
+
+#page3 h3 {
+    color: #b591d0;
+    font-size: 24px;
+    margin: 40px 0 20px 0;
+    font-weight: 700;
+}
+
+#page3 ol {
+    margin: 20px 0;
+    color: #e0d5f5;
+    padding-left: 0;
+    list-style: none;
+}
+
+#page3 ol li {
+    margin: 20px 0;
+    padding: 20px 25px;
+    background: linear-gradient(135deg, rgba(105, 77, 140, 0.3) 0%, rgba(181, 145, 208, 0.1) 100%);
+    border-radius: 15px;
+    border-left: 4px solid #694d8c;
+    counter-increment: step-counter;
+    position: relative;
+    padding-left: 50px;
+    transition: all 0.3s ease;
+}
+
+#page3 ol li:hover {
+    transform: translateX(10px);
+    border-left: 4px solid #b591d0;
+}
+
+#page3 ol li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    width: 25px;
+    height: 25px;
+    background: linear-gradient(135deg, #694d8c, #b591d0);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+#page3 a {
+    color: #b591d0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    border-bottom: 2px solid #b591d0;
+}
+
+#page3 a:hover {
+    color: #e0d5f5;
+    border-bottom: 2px solid #e0d5f5;
+}
+
+/* Seção 4 - Tabela Nutricional */
+#page4 {
+    background: linear-gradient(135deg, #412b5c 0%, #5a3a7a 50%, #412b5c 100%);
+}
+
+#page4 h2 {
+    font-size: 44px;
+    color: #e0d5f5;
+    margin-bottom: 60px;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+#page4 table {
+    color: #e0d5f5;
+    width: 70%;
+    padding: 30px;
+    margin: 0 auto;
+    border: 2px solid #694d8c;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-weight: 500;
+    background: linear-gradient(135deg, rgba(105, 77, 140, 0.2) 0%, rgba(181, 145, 208, 0.1) 100%);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(105, 77, 140, 0.4);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+#page4 td {
+    border: 1px solid #694d8c;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+#page4 tr:hover td {
+    background: rgba(105, 77, 140, 0.3);
+    border-color: #b591d0;
+}
+
+#page4 td pre {
+    font-size: 16px;
+    font-family: 'Outfit', sans-serif;
+    color: #e0d5f5;
 }
 
 footer{

@@ -55,14 +55,17 @@ A página foi desenvolvida com design responsivo e se adapta a:
 
 ```
 Creatine-Page/
-├── index.html          # Página principal
+├── index.html                 # Página principal
 ├── CSS/
-│   └── style.css       # Estilos da página
+│   ├── style.css              # Estilos principais da página
+│   ├── style_mobile.css       # Estilos específicos para dispositivos móveis
+│   └── style_new.css          # Estilos adicionais/atualizados
 ├── img/
-│   ├── creatine.png    # Ícone da página
+│   ├── creatine.png           # Ícone da página
 │   └── ramon-dino-mr-olympia-e1699131023342.webp
-├── README.md           # Documentação
-└── LICENSE             # Licença do projeto
+├── README.md                  # Documentação do projeto
+├── LICENSE                    # Licença do projeto
+└── .gitattributes             # Configurações do Git LFS/atributos
 ```
 
 ## 🔗 Links Úteis
